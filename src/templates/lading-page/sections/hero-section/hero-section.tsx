@@ -1,7 +1,6 @@
+import { Button } from "@/components/ui/button"
 import { ArrowRight, Clock, Store } from "lucide-react"
 import Image from "next/image"
-import React from "react"
-import { Button } from "../ui/button"
 import Link from "next/link"
 
 export const HeroSection = () => {
@@ -16,14 +15,14 @@ export const HeroSection = () => {
           <div className="flex flex-col items-center justify-center gap-4 md:items-start lg:items-start">
             <div className="flex items-center gap-2">
               <Clock className="text-cyan-100 h-4 w-4" />
-              <span className="text-gray-200">
+              <span className="text-gray-200 text-body-md">
                 Crie o seu site em menos de 5 minutos
               </span>
             </div>
 
             <div className="flex items-center gap-2">
               <Store className="text-cyan-100 h-4 w-4" />
-              <span className="text-gray-200">
+              <span className="text-gray-200 text-body-md">
                 Acompanhe e otimize seu negócio online
               </span>
             </div>
