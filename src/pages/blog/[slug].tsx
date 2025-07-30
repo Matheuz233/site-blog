@@ -1,9 +1,10 @@
-import { useRouter } from "next/router"
+import { allPosts } from "contentlayer/generated"
 import Image from "next/image"
 import Link from "next/link"
-import { allPosts } from "contentlayer/generated"
+import { useRouter } from "next/router"
 
 import { Avatar } from "@/components/avatar"
+import { Markdown } from "@/components/markdown/markdown"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,8 +12,8 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumbs"
-import { Markdown } from "@/components/markdown/markdown"
 import { Button } from "@/components/ui/button"
+import { useShare } from "@/hooks/use-share/use-share"
 
 export default function PostPage() {
   const router = useRouter()
@@ -21,6 +22,14 @@ export default function PostPage() {
     (post) => post.slug.toLowerCase() === slug.toLowerCase()
   )!
   const publishedDate = new Date(post?.date).toLocaleDateString("pt-BR")
+
+  const postUrl = `https://site.set/blog/${slug}`
+
+  const { shareButtons } = useShare({
+    url: postUrl,
+    title: post.title,
+    text: post.description,
+  })
 
   return (
     <main className="mt-32 text-gray-100">
@@ -79,15 +88,20 @@ export default function PostPage() {
           </article>
 
           <aside className="space-y-6">
-            <div className="rounded-lg bg-gray-700 p-4 md:p-6">
+            <div className="rounded-lg bg-gray-700">
               <h2 className="mb-4 text-heading-xs text-gray-100">
                 Compartilhar
               </h2>
 
               <div className="space-y-3">
-                {[{ key: "1", providerName: "LinkedIn" }].map((provider) => (
-                  <Button key={provider.key} variant="outline">
-                    {provider.providerName}
+                {shareButtons.map((provider) => (
+                  <Button
+                    key={provider.provider}
+                    onClick={() => provider.action()}
+                    variant="outline"
+                    className="w-full justify-start gap-2">
+                    {provider.icon}
+                    {provider.name}
                   </Button>
                 ))}
               </div>
