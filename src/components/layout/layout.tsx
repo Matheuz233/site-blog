@@ -1,3 +1,4 @@
+import { CallToAction } from "@/templates/lading-page/sections/call-to-action/call-to-action"
 import { Footer } from "../footer/footer"
 import { Header } from "../header/header"
 import { Inter, PT_Sans_Caption } from "next/font/google"
@@ -23,6 +24,7 @@ export const Layout = ({ children }: LayoutProps) => {
       className={`${inter.className} ${ptSansCaption.className} relative flex min-h-screen flex-col bg-gray-700`}>
       <Header />
       <main className="flex-1 flex flex-col mb-12">{children}</main>
+      <CallToAction />
       <Footer />
     </div>
   )
