@@ -8,9 +8,9 @@ import { useRouter } from "next/router"
 export function BlogList() {
   const router = useRouter()
   const query = router.query.q as string
-  const pageTitle = query
-    ? `Resultados de busca para "${query}"`
-    : "Dicas e estratégias para impulsionar seu negócio"
+  // const pageTitle = query
+  //   ? `Resultados de busca para "${query}"`
+  //   : "Dicas e estratégias para impulsionar seu negócio"
 
   const posts = query
     ? allPosts.filter((post) =>
